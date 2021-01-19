@@ -30,6 +30,16 @@ install3:
 	else \
 		python3 setup.py build -b $(OBJDIR) install; \
 	fi
+	
+install3.7:
+	rm -rf $(OBJDIR) src/
+	rm -rf prebuilt/win64/keystone.dll
+	rm -rf prebuilt/win32/keystone.dll
+	if test -n "${DESTDIR}"; then \
+		python3.7 setup.py build -b $(OBJDIR) install --root="${DESTDIR}"; \
+	else \
+		python3.7 setup.py build -b $(OBJDIR) install; \
+	fi
 
 # build & upload PyPi package with source code of the core
 sdist:
